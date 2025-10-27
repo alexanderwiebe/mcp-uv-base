@@ -4,90 +4,18 @@
     "dockerfile": "Dockerfile",
     "context": ".."
   },
-  "features": {
-    "ghcr.io/devcontainers/features/common-utils:2": {
-      "installZsh": true,
-      "configureZshAsDefaultShell": true,
-      "installOhMyZsh": true,
-      "upgradePackages": true,
-      "username": "vscode",
-      "userUid": "automatic",
-      "userGid": "automatic"
-    },
-    "ghcr.io/devcontainers/features/git:1": {
-      "ppa": true,
-      "version": "latest"
-    },
-    "ghcr.io/devcontainers/features/github-cli:1": {
-      "installDirectlyFromGitHubRelease": true,
-      "version": "latest"
-    }
-  },
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-python.python",
         "ms-python.vscode-pylance",
-        "charliermarsh.ruff",
-        "ms-vscode.vscode-json",
-        "redhat.vscode-yaml",
-        "ms-vscode-remote.remote-containers",
-        "github.copilot",
-        "github.copilot-chat",
-        "eamodio.gitlens",
-        "ms-vsliveshare.vsliveshare"
+        "charliermarsh.ruff"
       ],
       "settings": {
-        "python.defaultInterpreterPath": "/usr/local/bin/python",
-        "python.formatting.provider": "black",
-        "python.linting.enabled": true,
-        "python.linting.pylintEnabled": false,
-        "python.linting.flake8Enabled": true,
-        "python.testing.pytestEnabled": true,
-        "python.testing.unittestEnabled": false,
-        "python.terminal.activateEnvironment": true,
-        "files.associations": {
-          "*.json": "jsonc"
-        },
-        "terminal.integrated.defaultProfile.linux": "zsh",
-        "terminal.integrated.profiles.linux": {
-          "zsh": {
-            "path": "/bin/zsh"
-          }
-        },
-        "editor.formatOnSave": true,
-        "editor.codeActionsOnSave": {
-          "source.organizeImports": "explicit"
-        },
-        "python.analysis.typeCheckingMode": "basic",
-        "python.analysis.autoImportCompletions": true
+        "python.defaultInterpreterPath": "/workspaces/mcp-uv-base/.venv/bin/python"
       }
     }
   },
-  "forwardPorts": [3001, 8000, 8080],
-  "portsAttributes": {
-    "3001": {
-      "label": "FastMCP Server",
-      "onAutoForward": "notify"
-    },
-    "8000": {
-      "label": "Development Server",
-      "onAutoForward": "notify"
-    },
-    "8080": {
-      "label": "Alternative Server Port",
-      "onAutoForward": "notify"
-    }
-  },
-  "postCreateCommand": "uv sync && echo 'FastMCP devcontainer ready! Run: uv run python main.py'",
-  "remoteUser": "vscode",
-  "containerEnv": {
-    "MCP_HOST": "0.0.0.0",
-    "MCP_PORT": "3001"
-  },
-  "mounts": [
-    "source=mcp-uv-base-vscode-server,target=/home/vscode/.vscode-server,type=volume"
-  ],
-  "workspaceFolder": "/workspaces/mcp-uv-base",
-  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/mcp-uv-base,type=bind,consistency=cached"
+  "forwardPorts": [3001],
+  "postCreateCommand": "uv sync || echo 'Dependencies already synced'"
 }

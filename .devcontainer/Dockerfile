@@ -12,43 +12,22 @@ RUN apt-get update && apt-get install -y \
     curl \
     git \
     build-essential \
-    zsh \
-    sudo \
     && rm -rf /var/lib/apt/lists/*
 
-# Create a non-root user
-RUN groupadd --gid 1000 vscode \
-    && useradd --uid 1000 --gid vscode --shell /bin/zsh --create-home vscode \
-    && echo "vscode ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
-
 # Install uv (Python package manager)
-RUN curl -LsSf https://astral.sh/uv/install.sh | sh
-ENV PATH="/root/.cargo/bin:$PATH"
-
-# Copy uv into the system path for all users
-RUN cp /root/.cargo/bin/uv /usr/local/bin/uv
+RUN pip install uv
 
 # Set the working directory
 WORKDIR /workspaces/mcp-uv-base
 
-# Copy project files
+# Copy dependency files first for better Docker layer caching
 COPY pyproject.toml uv.lock ./
-COPY main.py ./
 
-# Change ownership to vscode user
-RUN chown -R vscode:vscode /workspaces
+# Install Python dependencies using uv (create venv and sync)
+RUN uv venv .venv && uv sync
 
-# Switch to the vscode user
-USER vscode
-
-# Set up shell
-RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-
-# Install Python dependencies using uv
-RUN uv sync
+# Copy all source files (filtered by .dockerignore)
+COPY . .
 
 # Expose the FastMCP server port
 EXPOSE 3001 8000 8080
-
-# Set the default command
-CMD ["zsh"]
