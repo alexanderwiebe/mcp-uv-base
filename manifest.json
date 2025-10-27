@@ -1,0 +1,21 @@
+{
+  "name": "demo",
+  "version": "0.1.0",
+  "description": "Demo FastMCP server with streaming",
+  "servers": {
+    "default": {
+      "transport": "streamable-http",
+      "url": "http://localhost:3001/mcp"
+    }
+  },
+  "tools": {
+    "add": { "description": "Add two integers" },
+    "greet": { "description": "Return a friendly greeting" },
+    "stream_numbers": { "description": "Emit numbers 1..n with a short delay" },
+    "live_data_feed": { "description": "Stream live data updates" },
+    "progress_tracker": {
+      "description": "Track progress of a long-running task"
+    },
+    "simple_counter": { "description": "Simple counter for testing streaming" }
+  }
+}

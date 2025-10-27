@@ -1,0 +1,135 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "tools": [
+      {
+        "name": "add",
+        "description": "Add two integers.",
+        "inputSchema": {
+          "properties": {
+            "a": { "type": "integer" },
+            "b": { "type": "integer" }
+          },
+          "required": ["a", "b"],
+          "type": "object"
+        },
+        "outputSchema": {
+          "properties": { "result": { "type": "integer" } },
+          "required": ["result"],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "_meta": { "_fastmcp": { "tags": [] } }
+      },
+      {
+        "name": "greet",
+        "description": "Return a friendly greeting.",
+        "inputSchema": {
+          "properties": { "name": { "type": "string" } },
+          "required": ["name"],
+          "type": "object"
+        },
+        "outputSchema": {
+          "properties": { "result": { "type": "string" } },
+          "required": ["result"],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "_meta": { "_fastmcp": { "tags": [] } }
+      },
+      {
+        "name": "stream_numbers",
+        "description": "Emit numbers 1..n with a short delay.",
+        "inputSchema": {
+          "properties": { "n": { "default": 5, "type": "integer" } },
+          "type": "object"
+        },
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "items": { "additionalProperties": true, "type": "object" },
+              "type": "array"
+            }
+          },
+          "required": ["result"],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "_meta": { "_fastmcp": { "tags": [] } }
+      },
+      {
+        "name": "live_data_feed",
+        "description": "Stream live data updates for the specified duration in seconds.",
+        "inputSchema": {
+          "properties": { "duration": { "default": 10, "type": "integer" } },
+          "type": "object"
+        },
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "items": { "additionalProperties": true, "type": "object" },
+              "type": "array"
+            }
+          },
+          "required": ["result"],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "_meta": { "_fastmcp": { "tags": [] } }
+      },
+      {
+        "name": "progress_tracker",
+        "description": "Track progress of a long-running task with multiple status updates.",
+        "inputSchema": {
+          "properties": {
+            "task": { "default": "data_processing", "type": "string" },
+            "steps": { "default": 8, "type": "integer" }
+          },
+          "type": "object"
+        },
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "items": { "additionalProperties": true, "type": "object" },
+              "type": "array"
+            }
+          },
+          "required": ["result"],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "_meta": { "_fastmcp": { "tags": [] } }
+      },
+      {
+        "name": "simple_counter",
+        "description": "Simple counter that yields individual numbers - great for testing streaming.",
+        "inputSchema": {
+          "properties": { "count": { "default": 3, "type": "integer" } },
+          "type": "object"
+        },
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "items": { "additionalProperties": true, "type": "object" },
+              "type": "array"
+            }
+          },
+          "required": ["result"],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "_meta": { "_fastmcp": { "tags": [] } }
+      },
+      {
+        "name": "simple_counter2",
+        "description": "Simple counter that yields individual numbers.",
+        "inputSchema": {
+          "properties": { "count": { "default": 3, "type": "integer" } },
+          "type": "object"
+        },
+        "_meta": { "_fastmcp": { "tags": [] } }
+      }
+    ]
+  }
+}
