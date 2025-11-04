@@ -11,6 +11,8 @@ ENV PYTHONUNBUFFERED=1 \
 RUN apt-get update && apt-get install -y \
     curl \
     git \
+    nodejs \
+    npm \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 

@@ -76,6 +76,10 @@ npx @modelcontextprotocol/inspector
 # Connect to: http://localhost:3001/sse
 ```
 
+```bash
+npx @modelcontextprotocol/inspector uv run fastmcp run main2.py:mcp
+```
+
 ### Using curl
 ```bash
 # Initialize session
