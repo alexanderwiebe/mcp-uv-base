@@ -16,6 +16,16 @@
       }
     }
   },
-  "forwardPorts": [3001],
+  "forwardPorts": [3001, 6274, 6277, 8000, 8080],
+  "portsAttributes": {
+    "6274": {
+      "label": "MCP Inspector UI",
+      "onAutoForward": "notify"
+    },
+    "6277": {
+      "label": "MCP Inspector Proxy",
+      "onAutoForward": "notify"
+    }
+  },
   "postCreateCommand": "uv sync || echo 'Dependencies already synced'"
 }

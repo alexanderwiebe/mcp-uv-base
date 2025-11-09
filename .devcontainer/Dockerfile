@@ -32,4 +32,4 @@ RUN uv venv .venv && uv sync
 COPY . .
 
 # Expose the FastMCP server port
-EXPOSE 3001 8000 8080
+EXPOSE 3001 8000 8080 6274 6277

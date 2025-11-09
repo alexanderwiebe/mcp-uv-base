@@ -1,0 +1,150 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run MCP Server (main2.py)",
+            "type": "shell",
+            "command": "uv",
+            "args": ["run", "fastmcp", "run", "main2.py:mcp"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "isBackground": true,
+            "runOptions": {
+                "instanceLimit": 1
+            }
+        },
+        {
+            "label": "Start MCP Inspector",
+            "type": "shell",
+            "command": "npx",
+            "args": [
+                "--yes",
+                "@modelcontextprotocol/inspector",
+                "uv",
+                "run",
+                "fastmcp",
+                "run",
+                "main2.py:mcp"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "new",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "isBackground": true,
+            "runOptions": {
+                "instanceLimit": 1
+            }
+        },
+        {
+            "label": "Run MCP Server + Inspector",
+            "dependsOrder": "sequence",
+            "dependsOn": ["Start MCP Inspector"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "new"
+            }
+        }
+    ]
+}{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run MCP Server (main2.py)",
+            "type": "shell",
+            "command": "uv",
+            "args": ["run", "fastmcp", "run", "main2.py:mcp"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "isBackground": true,
+            "runOptions": {
+                "instanceLimit": 1
+            }
+        },
+        {
+            "label": "Start MCP Inspector",
+            "type": "shell",
+            "command": "npx",
+            "args": [
+                "--yes",
+                "@modelcontextprotocol/inspector",
+                "uv",
+                "run",
+                "fastmcp",
+                "run",
+                "main2.py:mcp"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "new",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "BROWSER": "echo"
+                }
+            },
+            "problemMatcher": [],
+            "isBackground": true,
+            "runOptions": {
+                "instanceLimit": 1
+            }
+        },
+        {
+            "label": "Run MCP Server + Inspector",
+            "dependsOrder": "sequence",
+            "dependsOn": ["Start MCP Inspector"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "new"
+            }
+        }
+    ]
+}
